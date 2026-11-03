@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="format-detection" content="telephone=no">
+  <title>Apply – Sozo Skills Programme 2027</title>
+  <meta name="description" content="Apply for The Sozo Foundation Skills Programme: Barista, Baking, Beauty and Hair School. Applications close 28 January 2027.">
+  <meta name="theme-color" content="#0f4c5c">
+  <link rel="icon" href="img/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Sozo">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <noscript><div class="noscript">This page needs JavaScript. Please open it in Chrome, Safari, Firefox, Edge or Samsung Internet. If you use Opera Mini, switch off "Data savings" / "Extreme" mode.</div></noscript>
+  <div class="noscript" id="oldBrowser" hidden>Your browser is too old for this page. Please open it in an up-to-date version of Chrome, Safari, Firefox, Edge or Samsung Internet.</div>
+  <script>try{if(!window.fetch||!window.Promise||!Array.from||!Object.assign)throw 0;}catch(e){document.getElementById("oldBrowser").hidden=false;}</script>
+
+  <div class="demo-banner" id="demoBanner" hidden>Demo mode – applications are only saved in this browser. Add your Google Sheet link in js/config.js to go live.</div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="#top" class="logo" aria-label="The Sozo Foundation home">
+        <span class="logo-mark">S</span>
+        <span>Sozo Foundation<small>Skills Programme</small></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="#programmes">Programmes</a>
+        <a href="#how">How it works</a>
+        <a href="#status">Check status</a>
+        <a href="#faq">FAQ</a>
+        <a href="#apply" class="btn btn-primary btn-sm" id="navApply">Apply now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO + COUNTDOWN -->
+    <section class="hero">
+      <div class="container">
+        <div>
+          <span class="eyebrow" id="intakeName">Skills Programme 2027 Intake</span>
+          <h1>Learn a skill. Build a future.</h1>
+          <p class="lead">The Sozo Foundation offers hands-on skills training for young people aged 16 to 35. Choose one of our four schools and take your first step towards work or your own business. South Africans and foreign nationals are welcome to apply.</p>
+          <div class="hero-actions">
+            <a href="#apply" class="btn btn-primary" id="heroApply">Start my application</a>
+            <a href="#status" class="btn btn-ghost-light">Check my status</a>
+          </div>
+        </div>
+        <div class="countdown-card" aria-live="polite">
+          <div id="countdownOpen">
+            <h2>Applications close in</h2>
+            <div class="countdown" role="timer">
+              <div class="cd-unit"><span class="cd-num" id="cdDays">--</span><span class="cd-label">Days</span></div>
+              <div class="cd-unit"><span class="cd-num" id="cdHours">--</span><span class="cd-label">Hours</span></div>
+              <div class="cd-unit"><span class="cd-num" id="cdMins">--</span><span class="cd-label">Minutes</span></div>
+              <div class="cd-unit"><span class="cd-num" id="cdSecs">--</span><span class="cd-label">Seconds</span></div>
+            </div>
+            <p class="closing-line">Closing date: <strong id="closingText">28 January 2027, 23:59</strong></p>
+          </div>
+          <div id="countdownClosed" hidden>
+            <div class="closed-banner">Applications for this intake are now closed.</div>
+            <p class="closing-line" style="margin-top:12px">Already applied? You can still check your status below.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMMES -->
+    <section class="block" id="programmes">
+      <div class="container">
+        <div class="section-head">
+          <h2>Our four schools</h2>
+          <p>Read about each programme before you apply. You may apply for <strong>one</strong> programme only, so choose the one that fits you best.</p>
+        </div>
+        <div class="programme-grid" id="programmeGrid"></div>
+      </div>
+    </section>
+
+    <!-- REQUIREMENTS + PROCESS -->
+    <section class="block alt" id="how">
+      <div class="container">
+        <div class="section-head">
+          <h2>Before you apply</h2>
+          <p>Make sure you meet the requirements and know what happens next.</p>
+        </div>
+        <div class="req-grid">
+          <div class="panel">
+            <h3>Who can apply</h3>
+            <ul class="check-list">
+              <li>You are between <strong>16 and 35 years old</strong></li>
+              <li>You have a <strong>South African ID</strong>, or a valid <strong>passport, asylum seeker permit or refugee ID</strong>. Foreign nationals are welcome.</li>
+              <li>You have a phone number where we can reach you</li>
+              <li>You can attend the full programme</li>
+              <li>You have <strong>not already applied</strong> for this intake. Only one application per person is accepted.</li>
+            </ul>
+            <div class="fee-box">
+              <strong>Registration fee: R100</strong>
+              <span id="feeText"></span>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>What happens after you apply</h3>
+            <ol class="steps">
+              <li><strong>Complete the application and short assessment</strong><span>About 15–20 minutes. The assessment helps us check that the school suits you. There are no trick questions.</span></li>
+              <li><strong>Save your reference number</strong><span>You will see it on screen straight away.</span></li>
+              <li><strong>We review applications</strong><span>Our team reviews every application after the closing date.</span></li>
+              <li><strong>Shortlisting and interviews</strong><span>Shortlisted applicants are contacted by phone and pay the R100 registration fee at the Sozo office.</span></li>
+              <li><strong>Final outcome</strong><span>Check your status on this website at any time.</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPLICATION FORM -->
+    <section class="block" id="apply">
+      <div class="container">
+        <div class="section-head">
+          <h2>Application form</h2>
+          <p>Fields marked <span class="req">*</span> are required. Your information is kept private. We use it for selection and, without your name, in reports to our funders.</p>
+        </div>
+
+        <div class="form-wrap">
+          <div class="panel" id="formClosed" hidden>
+            <div class="alert alert-warn" style="margin:0">Applications closed on <strong id="closedOn"></strong>. Thank you for your interest – please look out for our next intake.</div>
+          </div>
+
+          <div class="panel" id="formPanel">
+            <div class="stepper" aria-hidden="true">
+              <div data-step="1" class="active"><span>1</span> School</div>
+              <div data-step="2"><span>2</span> Identity</div>
+              <div data-step="3"><span>3</span> About you</div>
+              <div data-step="4"><span>4</span> Household</div>
+              <div data-step="5"><span>5</span> Education &amp; work</div>
+              <div data-step="6"><span>6</span> Assessment</div>
+              <div data-step="7"><span>7</span> Submit</div>
+            </div>
+            <p class="step-count" id="stepCount">Step 1 of 7</p>
+            <div id="formAlert" role="alert"></div>
+
+            <form id="appForm" novalidate>
+              <!-- STEP 1 -->
+              <fieldset data-step="1">
+                <legend>Which school are you applying for?</legend>
+                <div class="choice-grid" id="programmeChoices" role="radiogroup" aria-label="Programme"></div>
+                <div class="field" data-for="programme"><div class="error-msg">Please choose a school.</div></div>
+              </fieldset>
+
+              <!-- STEP 2 -->
+              <fieldset data-step="2" hidden>
+                <legend>Your identity and contact details</legend>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="firstName">First name(s) <span class="req">*</span></label>
+                    <input type="text" id="firstName" autocomplete="given-name" maxlength="60">
+                    <div class="error-msg">Please enter your first name.</div>
+                  </div>
+                  <div class="field">
+                    <label for="surname">Surname <span class="req">*</span></label>
+                    <input type="text" id="surname" autocomplete="family-name" maxlength="60">
+                    <div class="error-msg">Please enter your surname.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="nationality">Nationality <span class="req">*</span></label>
+                    <select id="nationality"></select>
+                    <div class="error-msg">Please choose your nationality.</div>
+                  </div>
+                  <div class="field">
+                    <label for="docType">Identity document <span class="req">*</span></label>
+                    <select id="docType"></select>
+                    <div class="error-msg">Please choose your document type.</div>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="docNumber" id="docNumberLabel">Document number <span class="req">*</span></label>
+                  <input type="text" id="docNumber" maxlength="30" autocomplete="off" autocapitalize="characters">
+                  <div class="hint" id="docHint">Used to check your age and to make sure each person applies only once.</div>
+                  <div class="id-preview" id="idPreview"></div>
+                  <div class="error-msg" id="idError">Please enter a valid document number.</div>
+                </div>
+                <div class="grid-2">
+                  <div class="field" id="dobField" hidden>
+                    <span class="label" id="dobLabel">Date of birth <span class="req">*</span></span>
+                    <div class="dob-row" role="group" aria-labelledby="dobLabel">
+                      <select id="dobDay" aria-label="Day"></select>
+                      <select id="dobMonth" aria-label="Month"></select>
+                      <select id="dobYear" aria-label="Year"></select>
+                    </div>
+                    <input type="hidden" id="dob">
+                    <div class="error-msg">Please enter your date of birth.</div>
+                  </div>
+                  <div class="field">
+                    <label for="gender">Gender <span class="req">*</span></label>
+                    <select id="gender"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="phone">Cellphone number <span class="req">*</span></label>
+                    <input type="tel" id="phone" inputmode="tel" autocomplete="tel" maxlength="15" placeholder="e.g. 082 123 4567">
+                    <div class="error-msg">Please enter a valid 10-digit cellphone number.</div>
+                  </div>
+                  <div class="field">
+                    <label for="altPhone">Alternative number</label>
+                    <input type="tel" id="altPhone" inputmode="tel" maxlength="15" placeholder="Parent, guardian or friend">
+                    <div class="error-msg">Please enter a valid 10-digit number.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" autocomplete="email" maxlength="100">
+                    <div class="error-msg">Please enter a valid email address.</div>
+                  </div>
+                  <div class="field">
+                    <label for="preferredContact">Best way to contact you <span class="req">*</span></label>
+                    <select id="preferredContact"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="deviceAccess">Phone access <span class="req">*</span></label>
+                  <select id="deviceAccess"></select>
+                  <div class="error-msg">Please choose an option.</div>
+                </div>
+              </fieldset>
+
+              <!-- STEP 3 -->
+              <fieldset data-step="3" hidden>
+                <legend>About you</legend>
+                <p class="step-intro">These questions help us report on the communities we serve. They do not affect selection.</p>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="homeLanguage">Home language <span class="req">*</span></label>
+                    <select id="homeLanguage"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field">
+                    <label for="race">Population group <span class="req">*</span></label>
+                    <select id="race"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="religion">Religion <span class="req">*</span></label>
+                    <select id="religion"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field">
+                    <label for="province">Province <span class="req">*</span></label>
+                    <select id="province"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="municipality">Municipality <span class="req">*</span></label>
+                    <input type="text" id="municipality" maxlength="60" value="City of Cape Town" list="muniList">
+                    <datalist id="muniList"><option>City of Cape Town</option><option>Stellenbosch</option><option>Drakenstein</option><option>Overstrand</option></datalist>
+                    <div class="error-msg">Please enter your municipality.</div>
+                  </div>
+                  <div class="field">
+                    <label for="area">Area / suburb <span class="req">*</span></label>
+                    <select id="area"></select>
+                    <div class="error-msg">Please choose your area.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field" id="areaOtherField" hidden>
+                    <label for="areaOther">Please type your area <span class="req">*</span></label>
+                    <input type="text" id="areaOther" maxlength="60">
+                    <div class="error-msg">Please type your area.</div>
+                  </div>
+                  <div class="field">
+                    <label for="ward">Ward number <span class="opt">(if you know it)</span></label>
+                    <input type="text" id="ward" inputmode="numeric" maxlength="4">
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="dwelling">Type of home you live in <span class="req">*</span></label>
+                  <select id="dwelling"></select>
+                  <div class="error-msg">Please choose an option.</div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="yearsInArea">How long have you lived in this area? <span class="req">*</span></label>
+                    <select id="yearsInArea"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field">
+                    <label for="livingWith">Who do you mainly live with? <span class="req">*</span></label>
+                    <select id="livingWith"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="maritalStatus">Relationship status <span class="req">*</span></label>
+                    <select id="maritalStatus"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field">
+                    <label for="orphanhood">Are your parents alive? <span class="req">*</span></label>
+                    <select id="orphanhood"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+
+                <h3 class="sub-legend">Everyday activities</h3>
+                <p class="step-intro">Please answer for yourself. This helps us plan support and make training accessible.</p>
+                <div id="wgBlock"></div>
+                <div class="field">
+                  <label for="supportNeeds">Is there any support you would need to take part in training? <span class="opt">(optional)</span></label>
+                  <input type="text" id="supportNeeds" maxlength="200">
+                </div>
+              </fieldset>
+
+              <!-- STEP 4 -->
+              <fieldset data-step="4" hidden>
+                <legend>Your household and family</legend>
+                <p class="step-intro">This helps us understand the support you may need. It does not affect selection.</p>
+                <div class="grid-3">
+                  <div class="field">
+                    <label for="householdSize">People in your household <span class="req">*</span></label>
+                    <input type="number" id="householdSize" min="1" max="30" inputmode="numeric">
+                    <div class="error-msg">Enter a number from 1 to 30.</div>
+                  </div>
+                  <div class="field">
+                    <label for="dependants">People who depend on you <span class="req">*</span></label>
+                    <input type="number" id="dependants" min="0" max="20" inputmode="numeric" value="0">
+                    <div class="error-msg">Enter a number from 0 to 20.</div>
+                  </div>
+                  <div class="field">
+                    <label for="headOfHousehold">Are you the head of your household? <span class="req">*</span></label>
+                    <select id="headOfHousehold"><option value="">Select…</option><option>No</option><option>Yes</option></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="hasChildren">Do you have children of your own? <span class="req">*</span></label>
+                    <select id="hasChildren"><option value="">Select…</option><option>No</option><option>Yes</option><option>Prefer not to say</option></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field" id="numChildrenField" hidden>
+                    <label for="numChildren">How many children? <span class="req">*</span></label>
+                    <input type="number" id="numChildren" min="1" max="15" inputmode="numeric">
+                    <div class="error-msg">Enter a number from 1 to 15.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="householdIncome">Total household income per month <span class="req">*</span></label>
+                    <select id="householdIncome"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field">
+                    <label for="incomeSource">Main source of household income <span class="req">*</span></label>
+                    <select id="incomeSource"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="field" id="grantsField">
+                  <span class="label">Does anyone in your household receive a social grant? <span class="req">*</span></span>
+                  <div class="check-grid" id="grantsBlock"></div>
+                  <div class="error-msg">Choose at least one option, or "No grants".</div>
+                </div>
+                <div class="field">
+                  <label for="hunger">In the past 4 weeks, did you or anyone in your household go to sleep hungry because there was not enough food? <span class="req">*</span></label>
+                  <select id="hunger"></select>
+                  <div class="error-msg">Please choose an option.</div>
+                </div>
+              </fieldset>
+
+              <!-- STEP 5 -->
+              <fieldset data-step="5" hidden>
+                <legend>Education and work</legend>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="education">Highest completed education <span class="req">*</span></label>
+                    <select id="education"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field">
+                    <label for="inEducation">Are you currently studying or in training? <span class="req">*</span></label>
+                    <select id="inEducation"><option value="">Select…</option><option>No</option><option>Yes</option></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="employment">Work situation right now <span class="req">*</span></label>
+                    <select id="employment"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field">
+                    <label for="lastWorked">When did you last earn money from work? <span class="req">*</span></label>
+                    <select id="lastWorked"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="personalIncome">Your own income per month <span class="req">*</span></label>
+                    <select id="personalIncome"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field">
+                    <label for="englishComfort">How comfortable are you being trained in English? <span class="req">*</span></label>
+                    <select id="englishComfort"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="priorTraining">Have you done a skills course before? <span class="req">*</span></label>
+                    <select id="priorTraining"><option value="">Select…</option><option>No</option><option>Yes</option></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field" id="priorDetailField" hidden>
+                    <label for="priorTrainingDetail">Which course and where?</label>
+                    <input type="text" id="priorTrainingDetail" maxlength="120">
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="previousSozo">Have you been part of a Sozo programme before? <span class="req">*</span></label>
+                  <select id="previousSozo"></select>
+                  <div class="error-msg">Please choose an option.</div>
+                </div>
+
+                <h3 class="sub-legend">Ready for work</h3>
+                <div class="grid-3">
+                  <div class="field">
+                    <label for="bankAccount">Do you have a bank account? <span class="req">*</span></label>
+                    <select id="bankAccount"><option value="">Select…</option><option>No</option><option>Yes</option></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field">
+                    <label for="hasCV">Do you have a CV? <span class="req">*</span></label>
+                    <select id="hasCV"><option value="">Select…</option><option>No</option><option>Yes</option></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                  <div class="field">
+                    <label for="licence">Driver's licence <span class="req">*</span></label>
+                    <select id="licence"></select>
+                    <div class="error-msg">Please choose an option.</div>
+                  </div>
+                </div>
+                <div class="field" id="jobseekerField">
+                  <span class="label">Are you registered as a job-seeker anywhere? <span class="req">*</span></span>
+                  <div class="check-grid" id="jobseekerBlock"></div>
+                  <div class="error-msg">Choose at least one option, or "None".</div>
+                </div>
+
+                <h3 class="sub-legend">Your motivation</h3>
+                <div class="field">
+                  <label for="motivation">Why do you want to join this school? <span class="req">*</span></label>
+                  <textarea id="motivation" maxlength="1200" placeholder="Tell us about yourself, your goals, and why this programme is right for you."></textarea>
+                  <div class="hint"><span id="motCount">0</span> / 1200 characters (at least 30)</div>
+                  <div class="error-msg">Please write at least 30 characters.</div>
+                </div>
+                <div class="field">
+                  <label for="heardAbout">How did you hear about us? <span class="req">*</span></label>
+                  <select id="heardAbout"></select>
+                  <div class="error-msg">Please choose an option.</div>
+                </div>
+              </fieldset>
+
+              <!-- STEP 6 -->
+              <fieldset data-step="6" hidden>
+                <legend id="assessTitle">School assessment</legend>
+                <div class="alert alert-info">Answer honestly. There are no trick questions, and you don't need any experience. Your answers help us check that this school suits you and plan your training.</div>
+                <div id="assessBlock"></div>
+              </fieldset>
+
+              <!-- STEP 7 -->
+              <fieldset data-step="7" hidden>
+                <legend>Check and submit</legend>
+                <p style="color:var(--muted)">Please check your details. <strong>You can only apply once</strong> and cannot change your application after you submit it.</p>
+                <dl class="review-list" id="reviewList"></dl>
+                <div class="field">
+                  <label class="checkbox"><input type="checkbox" id="feeAck">
+                    <span>I understand that if I am shortlisted I must pay a once-off <strong>R100 registration fee</strong> at the Sozo office. I pay nothing to apply. <span class="req">*</span></span>
+                  </label>
+                  <div class="error-msg">Please confirm that you understand the registration fee.</div>
+                </div>
+                <div class="field">
+                  <label class="checkbox"><input type="checkbox" id="consent">
+                    <span>I confirm my information is true. I consent to The Sozo Foundation storing and using my personal information to process my application, contact me, and report to funders without my name. This is in line with the Protection of Personal Information Act (POPIA). <span class="req">*</span></span>
+                  </label>
+                  <div class="error-msg">You must give consent to submit your application.</div>
+                </div>
+                <div class="field">
+                  <label class="checkbox"><input type="checkbox" id="followUpConsent" checked>
+                    <span>Sozo may contact me after the programme (for example after 3, 6 and 12 months) to ask how I am doing. <span class="opt">(optional)</span></span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="form-nav">
+                <button type="button" class="btn btn-outline" id="backBtn" hidden>Back</button>
+                <span></span>
+                <button type="button" class="btn btn-brand" id="nextBtn">Continue</button>
+                <button type="submit" class="btn btn-primary" id="submitBtn" hidden>Submit application</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel" id="successPanel" hidden>
+            <div class="success-box">
+              <div class="success-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+              <h3 style="font-size:24px">Application submitted</h3>
+              <p>Thank you, <strong id="sucName"></strong>. Your application for <strong id="sucProg"></strong> has been received.</p>
+              <p style="margin-bottom:4px">Your reference number is:</p>
+              <div class="ref-code" id="sucRef"></div>
+              <p style="color:var(--muted);font-size:15px">Take a screenshot or write it down. To check your status later, use your document number and surname in the <a href="#status">status check</a>. You don't need to pay anything now. If you are shortlisted, the R100 registration fee is payable at the Sozo office.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATUS CHECK -->
+    <section class="block alt" id="status">
+      <div class="container">
+        <div class="section-head">
+          <h2>Check your application status</h2>
+          <p>Haven't heard from us yet? Enter your ID or document number and surname to see where your application is.</p>
+        </div>
+        <div class="status-wrap">
+          <div class="panel">
+            <form id="statusForm" novalidate>
+              <div class="field">
+                <label for="stId">ID, passport, permit or refugee number</label>
+                <input type="text" id="stId" maxlength="30" autocomplete="off" autocapitalize="characters">
+                <div class="error-msg">Please enter your document number.</div>
+              </div>
+              <div class="field">
+                <label for="stSurname">Surname</label>
+                <input type="text" id="stSurname" autocomplete="family-name" maxlength="60">
+                <div class="error-msg">Please enter your surname.</div>
+              </div>
+              <button type="submit" class="btn btn-brand btn-block" id="statusBtn">Check status</button>
+            </form>
+            <div class="status-result" id="statusResult" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="block" id="faq">
+      <div class="container">
+        <div class="section-head"><h2>Frequently asked questions</h2></div>
+        <div class="faq">
+          <details><summary>Does it cost anything to apply?</summary><p>No. Applying is free. If you are shortlisted, a once-off R100 registration fee is payable in person at the Sozo office. Bring your reference number and your ID or document.</p></details>
+          <details><summary>I am not South African. Can I apply?</summary><p>Yes. You can apply with a valid passport, an asylum seeker permit (Section 22) or a refugee ID / refugee status document (Section 24). Please bring the same document to your interview.</p></details>
+          <details><summary>Can I apply for more than one school?</summary><p>No. Each person may submit one application for one school. This helps us contact every applicant fairly during callbacks. Read the school information carefully before you choose.</p></details>
+          <details><summary>What is the assessment?</summary><p>It is a short set of questions about the school you chose: what you enjoy, how you would handle real workplace situations, a few basic questions, and whether you can attend. You don't need experience. It helps us check that the training suits you.</p></details>
+          <details><summary>I made a mistake on my application. What do I do?</summary><p>You cannot apply a second time. Please contact the Sozo office with your reference number and we will correct it for you.</p></details>
+          <details><summary>When will I hear back?</summary><p>We review applications after the closing date on 28 January 2027. Shortlisted applicants are contacted by phone. You can check your status here at any time.</p></details>
+          <details><summary>Why do you ask about income, grants and disability?</summary><p>Our funders ask us to report on who our programmes reach, so we can keep the training free and accessible. Reports never include your name. These answers do not affect selection.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>&copy; <span id="year"></span> The Sozo Foundation. All rights reserved.</div>
+      <div id="contactLine"></div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/assessment.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin – Sozo Skills Programme</title>
+  <meta name="theme-color" content="#0a3540">
+  <link rel="icon" href="img/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Sozo">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin">
+  <noscript><div class="noscript">This page needs JavaScript. Please open it in Chrome, Safari, Firefox, Edge or Samsung Internet. If you use Opera Mini, switch off "Data savings" / "Extreme" mode.</div></noscript>
+  <div class="noscript" id="oldBrowser" hidden>Your browser is too old for this page. Please open it in an up-to-date version of Chrome, Safari, Firefox, Edge or Samsung Internet.</div>
+  <script>try{if(!window.fetch||!window.Promise||!Array.from||!Object.assign)throw 0;}catch(e){document.getElementById("oldBrowser").hidden=false;}</script>
+
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="logo"><span class="logo-mark">S</span><span>Sozo Foundation<small>Recruitment Admin</small></span></div>
+      <h1>Sign in</h1>
+      <p class="sub">Authorised Sozo staff only.</p>
+      <div id="demoLoginNote" class="alert alert-warn" hidden>Demo mode: sign in as <strong>admin1</strong>, <strong>admin2</strong> or <strong>admin3</strong> with password <strong>demo</strong>.</div>
+      <div id="loginAlert" role="alert"></div>
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" autocomplete="username" autocapitalize="off" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn btn-brand btn-block" id="loginBtn">Sign in</button>
+      </form>
+      <div class="licence-note">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        Licensed for 3 administrator accounts. Sessions expire after 6 hours.
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="shell" id="app" hidden>
+    <aside class="sidebar">
+      <div class="logo"><span class="logo-mark">S</span><span>Sozo Admin<small>Skills Programme</small></span></div>
+      <nav class="side-nav" id="sideNav">
+        <button data-view="overview" class="active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>Overview</button>
+        <button data-view="programmes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Schools</button>
+        <button data-view="assessment"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Assessment</button>
+        <button data-view="mne"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16v-4M12 16V8M17 16v-7"/></svg>M&amp;E report</button>
+        <button data-view="breakdown"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>Breakdowns</button>
+        <button data-view="applicants"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0"/><path d="M17 11a3 3 0 1 0 0-6M22 21a6 6 0 0 0-4-5.6"/></svg>Applicants</button>
+      </nav>
+      <div class="side-foot">Signed in as<strong id="whoami"></strong><button class="btn btn-ghost-light btn-sm btn-block" id="logoutBtn" style="margin-top:10px">Sign out</button></div>
+    </aside>
+
+    <div class="main">
+      <div class="demo-banner" id="demoBanner" hidden>Demo mode – data is stored in this browser only. <button class="btn btn-sm btn-outline" id="seedBtn" style="min-height:26px;padding:2px 10px;margin-left:8px">Add 60 sample applicants</button> <button class="btn btn-sm btn-outline" id="clearBtn" style="min-height:26px;padding:2px 10px">Clear</button></div>
+      <header class="topbar">
+        <div>
+          <h1 id="viewTitle">Overview</h1>
+          <div class="sub" id="lastUpdated">Loading…</div>
+        </div>
+        <div class="top-actions">
+          <select id="globalProg" aria-label="Filter by school" style="min-height:38px;width:auto"></select>
+          <button class="btn btn-outline btn-sm" id="refreshBtn">Refresh</button>
+          <button class="btn btn-primary btn-sm" id="exportBtn">Export to Excel</button>
+          <button class="btn btn-outline btn-sm" id="logoutBtn2">Sign out</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <div id="loading" class="loading-overlay"><span class="spinner"></span> Loading applications…</div>
+        <div id="loadError"></div>
+
+        <!-- OVERVIEW -->
+        <section data-view="overview" hidden>
+          <div class="kpis" id="kpis"></div>
+          <div class="cards">
+            <div class="card"><h3>Applications per school <small id="ovTotal"></small></h3><div class="bars" id="ovProg"></div></div>
+            <div class="card"><h3>Compatibility <small>from assessment</small></h3><div class="bars" id="ovFit"></div></div>
+          </div>
+          <div class="cards">
+            <div class="card"><h3>Application status</h3><div class="bars" id="ovStatus"></div></div>
+            <div class="card"><h3>Registration fees <small>R100, paid at office</small></h3><div id="ovFees"></div></div>
+          </div>
+          <div class="cards">
+            <div class="card"><h3>Applications per day <small>last 14 days</small></h3><div id="ovDaily"></div></div>
+            <div class="card"><h3>Top areas</h3><div class="bars" id="ovAreas"></div></div>
+          </div>
+        </section>
+
+        <!-- SCHOOLS -->
+        <section data-view="programmes" hidden>
+          <div class="cards" id="progCards"></div>
+          <div class="card">
+            <h3>School × age group</h3>
+            <div class="table-wrap" style="box-shadow:none"><table class="xtab" id="xAge"></table></div>
+          </div>
+        </section>
+
+        <!-- ASSESSMENT -->
+        <section data-view="assessment" hidden>
+          <div class="alert alert-info">Baseline assessment: <strong>30% interest</strong>, <strong>25% workplace judgement</strong>, <strong>15% trade knowledge</strong> (pre-test) and <strong>30% readiness</strong>. Strong fit is 75 or more, moderate fit is 55–74. Flags never lower the score. They show what to discuss at interview.</div>
+          <div class="table-wrap" style="margin-bottom:20px"><table class="xtab" id="asSummary"></table></div>
+          <div class="cards">
+            <div class="card"><h3>Fit by school</h3><div id="asFitBySchool"></div></div>
+            <div class="card"><h3>Most common flags</h3><div class="bars" id="asFlags"></div></div>
+          </div>
+          <div class="card">
+            <h3>Ranked shortlist <small id="asRankNote"></small></h3>
+            <div class="toolbar" style="margin-bottom:10px">
+              <select id="asFit" aria-label="Filter by fit"><option value="">All fit levels</option><option>Strong fit</option><option>Moderate fit</option><option>Low fit</option></select>
+              <label class="checkbox" style="font-size:14px"><input type="checkbox" id="asNoFlags"> Only applicants without flags</label>
+            </div>
+            <div class="table-wrap cards-mobile" style="box-shadow:none">
+              <table><thead><tr><th>#</th><th>Name</th><th>School</th><th class="num">Score</th><th>Fit</th><th class="num">Interest</th><th class="num">Judgement</th><th class="num">Knowledge</th><th class="num">Readiness</th><th>Flags</th><th>Status</th></tr></thead>
+              <tbody id="asRank"></tbody></table>
+            </div>
+          </div>
+        </section>
+
+        <!-- M&E REPORT -->
+        <section data-view="mne" hidden>
+          <div class="alert alert-info" id="mneNote"></div>
+          <div class="card" style="margin-bottom:20px">
+            <h3>Baseline indicators <small>per school · numerator / % of applicants</small></h3>
+            <div class="table-wrap" style="box-shadow:none"><table class="xtab ind-table" id="indTable"></table></div>
+          </div>
+          <div class="cards three">
+            <div class="card"><h3>Age group</h3><div class="bars" id="dAge"></div></div>
+            <div class="card"><h3>Gender</h3><div class="bars" id="dGender"></div></div>
+            <div class="card"><h3>Nationality / status</h3><div class="bars" id="dCitizen"></div></div>
+          </div>
+          <div class="cards">
+            <div class="card"><h3>Area</h3><div class="bars" id="dArea"></div></div>
+            <div class="card"><h3>Population group</h3><div class="bars" id="dRace"></div></div>
+          </div>
+          <div class="cards">
+            <div class="card"><h3>Religion</h3><div class="bars" id="dReligion"></div></div>
+            <div class="card"><h3>Home language</h3><div class="bars" id="dLang"></div></div>
+          </div>
+          <div class="cards">
+            <div class="card"><h3>Work situation</h3><div class="bars" id="dEmp"></div></div>
+            <div class="card"><h3>Highest education</h3><div class="bars" id="dEdu"></div></div>
+          </div>
+          <div class="cards">
+            <div class="card"><h3>Household income per month</h3><div class="bars" id="dHhInc"></div></div>
+            <div class="card"><h3>Type of home</h3><div class="bars" id="dDwell"></div></div>
+          </div>
+          <div class="cards">
+            <div class="card"><h3>Social grants in household</h3><div class="bars" id="dGrants"></div></div>
+            <div class="card"><h3>Disability (Washington Group)</h3><div class="bars" id="dWG"></div></div>
+          </div>
+          <div class="cards">
+            <div class="card"><h3>Relationship status</h3><div class="bars" id="dMarital"></div></div>
+            <div class="card"><h3>Who they live with</h3><div class="bars" id="dLiving"></div></div>
+          </div>
+          <div class="cards three">
+            <div class="card"><h3>Parents alive</h3><div class="bars" id="dOrphan"></div></div>
+            <div class="card"><h3>Own children</h3><div class="bars" id="dChildren"></div></div>
+            <div class="card"><h3>Time in area</h3><div class="bars" id="dYears"></div></div>
+          </div>
+          <div class="cards">
+            <div class="card"><h3>Main household income source</h3><div class="bars" id="dIncSrc"></div></div>
+            <div class="card"><h3>Went to sleep hungry <small>past 4 weeks</small></h3><div class="bars" id="dHunger"></div></div>
+          </div>
+          <div class="cards three">
+            <div class="card"><h3>Work readiness</h3><div class="bars" id="dReady"></div></div>
+            <div class="card"><h3>Comfort with training in English</h3><div class="bars" id="dEnglish"></div></div>
+            <div class="card"><h3>Previous Sozo programme</h3><div class="bars" id="dPrevSozo"></div></div>
+          </div>
+          <div class="card" style="margin-bottom:20px">
+            <h3>Gender × age group</h3>
+            <div class="table-wrap" style="box-shadow:none"><table class="xtab" id="xGenderAge"></table></div>
+          </div>
+          <div class="card">
+            <h3>Area × school</h3>
+            <div class="table-wrap" style="box-shadow:none"><table class="xtab" id="xArea"></table></div>
+          </div>
+        </section>
+
+        <!-- BREAKDOWN BUILDER -->
+        <section data-view="breakdown" hidden>
+          <div class="alert alert-info">Build your own table: choose what to show in the rows and in the columns. Uses the school filter at the top. Use it to answer funder questions like "how many young women in Vrygrond are NEET?"</div>
+          <div class="card">
+            <div class="builder-controls">
+              <div class="field"><label for="bRows">Rows</label><select id="bRows"></select></div>
+              <div class="field"><label for="bCols">Columns</label><select id="bCols"></select></div>
+              <div class="field"><label for="bPct">Show</label><select id="bPct"><option value="n">Numbers</option><option value="row">Numbers and % of row</option><option value="col">Numbers and % of column</option></select></div>
+              <div class="field"><label for="bFilter">Only include</label><select id="bFilter"></select></div>
+            </div>
+            <div class="table-wrap" style="box-shadow:none"><table class="xtab" id="bTable"></table></div>
+            <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-outline btn-sm" id="bCopy">Copy table</button><button class="btn btn-outline btn-sm" id="bExport">Export this table to Excel</button></div>
+          </div>
+        </section>
+
+        <!-- APPLICANTS -->
+        <section data-view="applicants" hidden>
+          <div class="toolbar">
+            <input type="search" id="search" placeholder="Search name, document, phone or reference…" aria-label="Search applicants">
+            <select id="fStatus" aria-label="Filter by status"></select>
+            <select id="fFit" aria-label="Filter by fit"><option value="">All fit levels</option><option>Strong fit</option><option>Moderate fit</option><option>Low fit</option></select>
+            <select id="fFee" aria-label="Filter by fee"><option value="">All fees</option><option>Due</option><option>Paid</option><option>Waived</option><option>Not yet due</option></select>
+            <select id="fAge" aria-label="Filter by age group"><option value="">All ages</option><option>16–20</option><option>21–35</option></select>
+            <select id="fGender" aria-label="Filter by gender"></select>
+            <select id="fGroup" aria-label="Filter by group"><option value="">All groups</option><option value="neet">NEET</option><option value="disability">Disability</option><option value="foreign">Foreign nationals</option><option value="parent">Parents</option><option value="food">Food insecure</option><option value="orphan">Orphans</option><option value="flags">Has assessment flags</option></select>
+          </div>
+          <div class="table-wrap cards-mobile">
+            <table>
+              <thead><tr>
+                <th class="sortable" data-sort="reference">Ref</th>
+                <th class="sortable" data-sort="surname">Name</th>
+                <th class="sortable" data-sort="programme">School</th>
+                <th class="sortable num" data-sort="age">Age</th>
+                <th class="sortable num" data-sort="scoreTotal">Fit</th>
+                <th class="sortable" data-sort="area">Area</th>
+                <th>Phone</th>
+                <th class="sortable" data-sort="status">Status</th>
+                <th>Fee</th>
+                <th class="sortable" data-sort="submitted">Submitted</th>
+              </tr></thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+          <div class="pager"><span id="pageInfo"></span><span><button class="btn btn-outline btn-sm" id="prevPage">Previous</button> <button class="btn btn-outline btn-sm" id="nextPage">Next</button></span></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAIL DRAWER -->
+  <div class="drawer-bg" id="drawerBg" hidden></div>
+  <aside class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="dName">
+    <div class="drawer-head">
+      <div><h2 id="dName"></h2><div class="sub" id="dRef" style="color:var(--muted);font-size:13px"></div></div>
+      <button class="close-btn" id="closeDrawer" aria-label="Close">×</button>
+    </div>
+    <div class="drawer-body">
+      <div id="dWarn"></div>
+      <div class="d-section">
+        <h3>Assessment</h3>
+        <div id="dAssess"></div>
+        <details class="answers"><summary>Show all answers</summary><div id="dAnswers"></div></details>
+      </div>
+      <div class="status-box">
+        <h3 style="font-size:16px">Update status</h3>
+        <div class="field"><label for="dStatus">Status</label><select id="dStatus"></select></div>
+        <div class="field">
+          <label for="dMsg">Message to applicant <span style="font-weight:400;color:var(--muted)">(optional – shown on status check)</span></label>
+          <textarea id="dMsg" maxlength="500" style="min-height:80px" placeholder="Leave empty to use the standard message for this status."></textarea>
+        </div>
+        <div id="dAlert"></div>
+        <button class="btn btn-brand btn-block" id="saveStatus">Save status</button>
+      </div>
+      <div class="status-box" style="margin-top:14px">
+        <h3 style="font-size:16px">Registration fee (R100)</h3>
+        <div class="grid-2" style="gap:10px">
+          <div class="field"><label for="dFee">Fee status</label><select id="dFee"><option>Unpaid</option><option>Paid</option><option>Waived</option></select></div>
+          <div class="field"><label for="dReceipt">Receipt number</label><input type="text" id="dReceipt" maxlength="30"></div>
+        </div>
+        <div id="dFeeAlert"></div>
+        <button class="btn btn-primary btn-block" id="saveFee">Save fee</button>
+      </div>
+      <div class="d-section">
+        <h3>Applicant details</h3>
+        <dl class="detail-list" id="dList"></dl>
+      </div>
+    </div>
+  </aside>
+
+  <script src="js/vendor/xlsx.full.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/assessment.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
