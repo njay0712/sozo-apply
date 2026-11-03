@@ -6,7 +6,7 @@ window.SOZO_CONFIG = {
   /* Paste your Google Apps Script Web App URL between the quotes
      (see SETUP-GUIDE.html). Leave it empty to run in DEMO MODE,
      where data is only kept in your own browser for testing. */
-  API_URL: "https://script.google.com/macros/s/AKfycbzbq_8DQG_0WuWoFYPZDz-a_kMtzm-7Hk3efKCt0XbNrH20h5eDCwT4T8PK_zBYNVkL/exec ",
+  API_URL: "https://script.google.com/macros/s/AKfycbwL2byHM8Dp6EvnULBE4_DxNGd1YEzHsfKxb43mYYgP_4F_bePAXNgWgCsr7ZI7xwGO/exec",
 
   ORG_NAME: "The Sozo Foundation",
   INTAKE_NAME: "Skills Programme 2027 Intake",
