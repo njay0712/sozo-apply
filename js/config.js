@@ -6,7 +6,7 @@ window.SOZO_CONFIG = {
   /* Paste your Google Apps Script Web App URL between the quotes
      (see SETUP-GUIDE.html). Leave it empty to run in DEMO MODE,
      where data is only kept in your own browser for testing. */
-  API_URL: "",
+  API_URL: "https://script.google.com/macros/s/AKfycbzbq_8DQG_0WuWoFYPZDz-a_kMtzm-7Hk3efKCt0XbNrH20h5eDCwT4T8PK_zBYNVkL/exec ",
 
   ORG_NAME: "The Sozo Foundation",
   INTAKE_NAME: "Skills Programme 2027 Intake",
@@ -15,8 +15,8 @@ window.SOZO_CONFIG = {
   CLOSING_DATE: "2027-01-28T23:59:59+02:00",
 
   /* Shown in the footer and on the status page. Leave empty to hide. */
-  CONTACT_EMAIL: "",
-  CONTACT_PHONE: "",
+  CONTACT_EMAIL: "nigel@sozo.org.za",
+  CONTACT_PHONE: "0218255529",
 
   /* Fit bands for the assessment (overall score out of 100) */
   FIT_BANDS: { strong: 75, moderate: 55 },
